@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-dotenv.config(); // doit être tout en haut
+dotenv.config(); 
 
 import mysql from "mysql2/promise";
 
