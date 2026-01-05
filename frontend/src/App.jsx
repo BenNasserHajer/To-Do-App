@@ -1,58 +1,3 @@
-// import { useEffect, useState } from "react";
-// import api from "./services/api";
-// import TodoForm from "./components/TodoForm";
-// import TodoItem from "./components/TodoItem";
-// import Stats from "./components/Stats";
-
-// export default function App() {
-//   const [todos, setTodos] = useState([]);
-
-//   const loadTodos = async () => {
-//     const res = await api.get("/todos");
-//     setTodos(res.data);
-//   };
-
-//   useEffect(() => { loadTodos(); }, []);
-
-//   const addTodo = async (title, priority) => {
-//     await api.post("/todos", { title, priority });
-//     loadTodos();
-//   };
-
-//   const toggleTodo = async (todo) => {
-//     await api.put(`/todos/${todo.id}`, {
-//       completed: !todo.completed
-//     });
-//     loadTodos();
-//   };
-
-//   const deleteTodo = async (id) => {
-//     await api.delete(`/todos/${id}`);
-//     loadTodos();
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-base-200 p-10">
-//       <div className="max-w-xl mx-auto space-y-4">
-//         <h1 className="text-4xl font-bold text-center">Advanced Todo List</h1>
-
-//         <Stats todos={todos} />
-//         <TodoForm onAdd={addTodo} />
-
-//         {todos.map(todo => (
-//           <TodoItem
-//             key={todo.id}
-//             todo={todo}
-//             onToggle={() => toggleTodo(todo)}
-//             onDelete={() => deleteTodo(todo.id)}
-//           />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-
 import { useEffect, useState } from "react";
 import { Filter, Circle } from "lucide-react";
 import api from "./services/api";
@@ -60,6 +5,13 @@ import TodoForm from "./components/TodoForm";
 import TodoItem from "./components/TodoItem";
 import Stats from "./components/Stats";
 import ToastContainer from "./components/ToastContainer";
+
+ 
+
+const logoLeft = "https://todo-app-s3-test.s3.us-east-1.amazonaws.com/pink.jpg";
+const logoRight = "https://todo-app-s3-test.s3.us-east-1.amazonaws.com/brown.jpg";
+const sidebarLeft = "https://todo-app-s3-test.s3.us-east-1.amazonaws.com/with-pencil.jpg";
+const sidebarRight = "https://todo-app-s3-test.s3.us-east-1.amazonaws.com/blue.jpg";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -138,15 +90,36 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50">
+    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 relative">
       <ToastContainer toasts={toasts} removeToast={removeToast} />
       
-      <div className="max-w-5xl mx-auto  py-10">
+      {/* Images décoratives sur les côtés */}
+      <img 
+        src={sidebarLeft} 
+        alt="Decoration" 
+        className="fixed left-0 top-1/4 w-32 opacity-30 pointer-events-none hidden lg:block" 
+      />
+      <div 
+        style={{ backgroundImage: `url(${sidebarRight})` }}
+        className="fixed right-0 top-1/3 w-32 h-32 bg-cover bg-center opacity-30 pointer-events-none hidden lg:block" 
+      />
+      
+      <div className="max-w-5xl mx-auto py-10 relative z-10">
         <div className="text-center mb-10">
-          <h1 className="text-5xl font-black bg-gradient-to-r from-violet-600 to-purple-500 bg-clip-text text-transparent mb-2">
-            Ma Todo List
-          </h1>
-          <p className="text-black-600 font-medium">Organisez vos tâches efficacement</p>
+          <div className="flex items-center justify-center gap-6 mb-4">
+            {/* Image à gauche du titre */}
+            <img src={logoLeft} alt="Logo" className="w-16 h-16 hidden md:block" />
+            
+            <div>
+              <h1 className="text-5xl font-black bg-gradient-to-r from-violet-600 to-purple-500 bg-clip-text text-transparent mb-2">
+                Ma Todo List
+              </h1>
+              <p className="text-black-600 font-medium">Organisez vos tâches efficacement</p>
+            </div>
+            
+            {/* Image à droite du titre */}
+            <img src={logoRight} alt="Logo" className="w-16 h-16 hidden md:block" />
+          </div>
         </div>
 
         <Stats todos={todos} />
