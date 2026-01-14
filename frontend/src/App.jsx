@@ -8,11 +8,11 @@ import ToastContainer from "./components/ToastContainer";
 
  
 
-const logoLeft = "https://todo-app-s3-test.s3.us-east-1.amazonaws.com/pink.jpg";
-const logoRight = "https://todo-app-s3-test.s3.us-east-1.amazonaws.com/brown.jpg";
-const sidebarLeft = "https://todo-app-s3-test.s3.us-east-1.amazonaws.com/with-pencil.jpg";
-const sidebarRight = "https://todo-app-s3-test.s3.us-east-1.amazonaws.com/blue.jpg";
-
+const logoLeft = "https://s3-app-todo.s3.us-east-1.amazonaws.com/pink.jpg";
+const logoRight = "https://s3-app-todo.s3.us-east-1.amazonaws.com/brown.jpg";
+const sidebarLeft = "https://s3-app-todo.s3.us-east-1.amazonaws.com/with-pencil.jpg";
+const sidebarRight = "https://s3-app-todo.s3.us-east-1.amazonaws.com/blue.jpg";
+ 
 export default function App() {
   const [todos, setTodos] = useState([]);
   const [toasts, setToasts] = useState([]);
