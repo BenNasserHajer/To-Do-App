@@ -6,11 +6,10 @@ import TodoItem from "./components/TodoItem";
 import Stats from "./components/Stats";
 import ToastContainer from "./components/ToastContainer";
 
-// Imports des images
-import logoLeft from "./assets/logo-left.jpg";
-import logoRight from "./assets/logo-right.jpg";
-import sidebarLeft from "./assets/sidebar-left.jpg";
-import sidebarRight from "./assets/sidebar-right.jpg";
+const logoLeft = "https://s3-app-todo.s3.us-east-1.amazonaws.com/pink.jpg";
+const logoRight = "https://s3-app-todo.s3.us-east-1.amazonaws.com/brown.jpg";
+const sidebarLeft = "https://s3-app-todo.s3.us-east-1.amazonaws.com/with-pencil.jpg";
+const sidebarRight = "https://s3-app-todo.s3.us-east-1.amazonaws.com/blue.jpg";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
