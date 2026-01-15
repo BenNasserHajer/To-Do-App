@@ -6,10 +6,11 @@ import TodoItem from "./components/TodoItem";
 import Stats from "./components/Stats";
 import ToastContainer from "./components/ToastContainer";
 
-const logoLeft = "https://s3-app-todo.s3.us-east-1.amazonaws.com/pink.jpg";
-const logoRight = "https://s3-app-todo.s3.us-east-1.amazonaws.com/brown.jpg";
-const sidebarLeft = "https://s3-app-todo.s3.us-east-1.amazonaws.com/with-pencil.jpg";
-const sidebarRight = "https://s3-app-todo.s3.us-east-1.amazonaws.com/blue.jpg";
+// Imports des images
+import logoLeft from "./assets/logo-left.jpg";
+import logoRight from "./assets/logo-right.jpg";
+import sidebarLeft from "./assets/sidebar-left.jpg";
+import sidebarRight from "./assets/sidebar-right.jpg";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -26,25 +27,27 @@ export default function App() {
     setToasts(prev => prev.filter(t => t.id !== id));
   };
 
-  const loadTodos = async () => {
-    try {
-      setLoading(true);
-      const res = await api.get("/todos");
+ const loadTodos = async () => {
+  try {
+    setLoading(true);
+    const res = await api.get("/todos");
 
-      const todosArray = Array.isArray(res.data)
+    setTodos(
+      Array.isArray(res.data)
         ? res.data
-        : Array.isArray(res.data.todos)
-        ? res.data.todos
-        : [];
+        : Array.isArray(res.data?.data)
+        ? res.data.data
+        : []
+    );
 
-      setTodos(todosArray);
-    } catch (error) {
-      showToast("Erreur lors du chargement des tâches", "error");
-      console.error("Erreur:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (error) {
+    showToast("Erreur lors du chargement des tâches", "error");
+    console.error("Erreur:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   useEffect(() => {
     loadTodos();
@@ -112,6 +115,7 @@ export default function App() {
       <div className="max-w-5xl mx-auto py-10 relative z-10">
         <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-6 mb-4">
+            {/* Image à gauche du titre */}
             <img src={logoLeft} alt="Logo" className="w-16 h-16 hidden md:block" />
             
             <div>
@@ -121,6 +125,7 @@ export default function App() {
               <p className="text-black-600 font-medium">Organisez vos tâches efficacement</p>
             </div>
             
+            {/* Image à droite du titre */}
             <img src={logoRight} alt="Logo" className="w-16 h-16 hidden md:block" />
           </div>
         </div>
