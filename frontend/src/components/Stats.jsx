@@ -1,25 +1,10 @@
-// export default function Stats({ todos }) {
-//   const total = todos.length;
-//   const done = todos.filter(t => t.completed).length;
+export default function Stats({ todos = [] }) { // ✅ valeur par défaut
 
-//   return (
-//     <div className="stats shadow">
-//       <div className="stat">
-//         <div className="stat-title">Total</div>
-//         <div className="stat-value">{total}</div>
-//       </div>
-//       <div className="stat">
-//         <div className="stat-title">Completed</div>
-//         <div className="stat-value text-success">{done}</div>
-//       </div>
-//     </div>
-//   );
-// }
+  // Sécurisation au cas où todos ne serait pas un tableau
+  const safeTodos = Array.isArray(todos) ? todos : [];
 
-
-export default function Stats({ todos }) {
-  const total = todos.length;
-  const done = todos.filter(t => t.completed).length;
+  const total = safeTodos.length;
+  const done = safeTodos.filter(t => t.completed).length;
   const pending = total - done;
   const progress = total > 0 ? (done / total) * 100 : 0;
 
